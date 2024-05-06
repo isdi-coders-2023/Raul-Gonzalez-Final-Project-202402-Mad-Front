@@ -37,7 +37,7 @@ Realiza una app fullstack JS (Angular, Node, Express (o Nest) SQL) con las sigui
 
 Proceso de login de usuario testado con Cypress
 
-## Check diario
+## Check diarioo
 
 - daily meeting (qué tareas hice ayer, qué stoppers tuve, qué tareas haré hoy)
 - informes de sonar sobre la rama principal, front y back
