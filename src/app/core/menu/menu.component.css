@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  justify-content: center;
+  flex: 2 0 auto;
+  background-color: black;
+}
+
+menu {
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  margin: 22px;
+  padding: 5px 20px;
+}

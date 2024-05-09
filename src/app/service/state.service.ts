@@ -28,7 +28,6 @@ const initialState: State = {
 })
 export class StateService {
   private state$ = new BehaviorSubject<State>(initialState);
-  jwtDecode = jwtDecode;
 
   constructor(private repo: RepoUsersService) {
     const tokenValid = localStorage.getItem('proyectofronted');
@@ -45,7 +44,7 @@ export class StateService {
     this.state$.next({ ...this.state$.value, loginState });
   }
   setLogin(token: string) {
-    const currenPayload = this.jwtDecode(token) as Payload;
+    const currenPayload = jwtDecode(token) as Payload;
     localStorage.setItem('LOTR', JSON.stringify({ token }));
     this.repo.getById(currenPayload.id).subscribe((user) => {
       this.state$.next({

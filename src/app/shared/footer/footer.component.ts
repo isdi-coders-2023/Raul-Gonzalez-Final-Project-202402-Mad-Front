@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
       <p>© Raul Gonzalez</p>
       <nav class="nav-images">
         <a href=""
-          ><img src="../assets/logoXorange.png" alt="logox" width="30"
+          ><img src="../assets/logoXorange.png" alt="logox" width="40"
         /></a>
         <a href=""
           ><img src="../assets/logodiscord.png" alt="logodiscord" width="40"

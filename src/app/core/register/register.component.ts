@@ -7,13 +7,13 @@ import {
   FormControl,
 } from '@angular/forms';
 import { RepoUsersService } from '../../service/users.repo.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { StateService } from '../../service/state.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   template: `
     <section>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -48,16 +48,22 @@ import { StateService } from '../../service/state.service';
               placeholder="Insert you user name"
           /></label>
         </div>
+
         <button type="submit" [disabled]="registerForm.invalid">Signup</button>
       </form>
     </section>
   `,
   styles: `
+   :host {
+    display: flex;
+    justify-content: center;
+    flex: 2 0 auto;
+  }
     section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
   }
     form {
     display: flex;
@@ -94,6 +100,7 @@ export default class RegisterComponent {
     const userData = this.registerForm.value;
     return this.repo.create(userData).subscribe(() => {
       this.state.setLoginState('logged');
+      this.router.navigate(['/login']);
     });
   }
 }
