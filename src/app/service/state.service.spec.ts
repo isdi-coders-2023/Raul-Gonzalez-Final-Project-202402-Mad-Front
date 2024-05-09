@@ -2,8 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { StateService, State, LoginState } from './state.service';
 import { RepoUsersService } from './users.repo.service';
 import { of } from 'rxjs';
-import jwtEncode from 'jwt-encode';
-
 describe('StateService', () => {
   let service: StateService;
   let mockRepoUsersService: jasmine.SpyObj<RepoUsersService>;
@@ -39,22 +37,21 @@ describe('StateService', () => {
   describe('setLogin', () => {
     it('should set login state to logged and set token, payload, and current user', () => {
       const payload = { id: 'mockId', exp: 1234567890 };
-      const token = jwtEncode(payload, 'mockSecretKey');
-
+      spyOn(service, 'jwtDecode').and.returnValue(payload);
       const mockUser = { id: 'mockId', name: 'John Doe' };
       spyOn(localStorage, 'setItem');
 
       mockRepoUsersService.getById.and.returnValue(of(mockUser));
-      service.setLogin(token);
+      service.setLogin('token');
 
       service.getState().subscribe((state: State) => {
         expect(state.loginState).toEqual('logged');
-        expect(state.token).toEqual(token);
+        expect(state.token).toEqual('token');
         expect(state.currenPayload).toEqual(payload);
         expect(state.currenUser).toEqual(mockUser);
         expect(localStorage.setItem).toHaveBeenCalledWith(
           'LOTR',
-          JSON.stringify({ token })
+          JSON.stringify({ token: 'token' })
         );
       });
     });
