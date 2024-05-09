@@ -38,11 +38,16 @@ import { Router } from '@angular/router';
     </section>
   `,
   styles: `
+  :host {
+    display: flex;
+    justify-content: center;
+    flex: 2 0 auto;
+  }
+
   section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
   }
 
   form {

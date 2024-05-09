@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   template: `
     <header>
       <video
-        src="../assets/gifanillo.mp4"
-        width="80px"
-        height="80px"
+        src="../assets/videoanillo.mp4"
+        width="65px"
+        height="65px"
         controls
         autoplay
         loop
