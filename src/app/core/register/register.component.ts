@@ -54,7 +54,7 @@ import { StateService } from '../../service/state.service';
     </section>
   `,
   styles: `
-   :host {
+  :host {
     display: flex;
     justify-content: center;
     flex: 2 0 auto;
