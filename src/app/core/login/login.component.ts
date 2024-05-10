@@ -57,14 +57,13 @@ import { Router, RouterModule } from '@angular/router';
     align-items: center;
     justify-content: center;
     gap: 20px;
-    border: 3px solid white;
     color: white;
     height: 60vh;
     width: 80vw;
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.3)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
     );
     border-radius: 10px;
     }

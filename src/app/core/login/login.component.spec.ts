@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import LoginComponent from './login.component';
 import { of, throwError } from 'rxjs';
 import { RepoUsersService } from '../../service/users.repo.service';
@@ -9,11 +9,12 @@ import { StateService } from '../../service/state.service';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let mockRouter: Router;
+
   let mockRepoUserService: jasmine.SpyObj<RepoUsersService>;
   let mockStateService: jasmine.SpyObj<StateService>;
+  let router: Router;
+
   beforeEach(async () => {
-    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
     mockRepoUserService = jasmine.createSpyObj('RepoUsersService', ['login']);
     mockStateService = jasmine.createSpyObj('StateService', [
       'setLogin',
@@ -23,7 +24,7 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, LoginComponent],
       providers: [
-        { provide: Router, useValue: mockRouter },
+        provideRouter([]),
         { provide: RepoUsersService, useValue: mockRepoUserService },
         { provide: StateService, useValue: mockStateService },
         FormBuilder,
@@ -34,6 +35,8 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -85,7 +88,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
     component.submit();
     expect(mockStateService.setLogin).toHaveBeenCalledWith(token);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/home']);
   });
 
   it('should set login state to error on login error', () => {

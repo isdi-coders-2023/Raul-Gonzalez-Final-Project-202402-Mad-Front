@@ -9,15 +9,13 @@ import { RouterModule } from '@angular/router';
   template: `
     <header>
       <a href="#" [routerLink]="'/home'"
-        ><video
-          src="../assets/videoanillo.mp4"
-          width="70px"
-          height="65px"
-          controls
-          autoplay
-          loop
-        ></video
-      ></a>
+        ><img
+          src="../assets/anillo.gif"
+          width="55px"
+          height="55px"
+          alt="ring"
+        />
+      </a>
 
       <app-burger></app-burger>
     </header>

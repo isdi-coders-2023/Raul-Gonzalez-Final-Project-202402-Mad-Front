@@ -14,6 +14,9 @@ export type State = {
   token: string | null;
   currenPayload: Payload | null;
   currenUser: unknown | null;
+  menuControls: {
+    isOpen: boolean;
+  };
 };
 
 const initialState: State = {
@@ -21,6 +24,9 @@ const initialState: State = {
   token: null,
   currenPayload: null,
   currenUser: null,
+  menuControls: {
+    isOpen: false,
+  },
 };
 
 @Injectable({
@@ -28,6 +34,7 @@ const initialState: State = {
 })
 export class StateService {
   private state$ = new BehaviorSubject<State>(initialState);
+  jwtDecode = jwtDecode;
 
   constructor(private repo: RepoUsersService) {
     const tokenValid = localStorage.getItem('proyectofronted');
@@ -44,7 +51,7 @@ export class StateService {
     this.state$.next({ ...this.state$.value, loginState });
   }
   setLogin(token: string) {
-    const currenPayload = jwtDecode(token) as Payload;
+    const currenPayload = this.jwtDecode(token) as Payload;
     localStorage.setItem('LOTR', JSON.stringify({ token }));
     this.repo.getById(currenPayload.id).subscribe((user) => {
       this.state$.next({
@@ -64,5 +71,15 @@ export class StateService {
       token: null,
       currenPayload: null,
     });
+  }
+  setMenuControls(isOpen: boolean) {
+    this.state$.next({
+      ...this.state$.value,
+      menuControls: { isOpen },
+    });
+  }
+
+  get menuOptions() {
+    return this.state$.value.menuControls;
   }
 }
