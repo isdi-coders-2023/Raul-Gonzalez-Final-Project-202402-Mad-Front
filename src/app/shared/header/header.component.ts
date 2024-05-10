@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
+import BurgerComponent from '../../core/burger/burger.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [BurgerComponent, RouterModule],
   template: `
     <header>
-      <video
-        src="../assets/videoanillo.mp4"
-        width="65px"
-        height="65px"
-        controls
-        autoplay
-        loop
-      ></video>
-      <img src="../assets/iconburger.png" alt="iconburger" width="70px" />
+      <a href="#" [routerLink]="'/home'"
+        ><img
+          src="../assets/anillo.gif"
+          width="55px"
+          height="55px"
+          alt="ring"
+        />
+      </a>
+
+      <app-burger></app-burger>
     </header>
   `,
   styleUrl: './header.component.css',

@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./core/home/home.component'),
   },
+  {
+    path: 'menu',
+    loadComponent: () => import('./core/menu/menu.component'),
+  },
 ];

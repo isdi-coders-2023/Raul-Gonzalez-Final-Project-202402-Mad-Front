@@ -4,7 +4,7 @@ import { StateService } from '../../service/state.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserLoginDto } from '../../models/user.data';
 import { FooterComponent } from '../../shared/footer/footer.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +34,7 @@ import { Router } from '@angular/router';
           /></label>
         </div>
         <button type="submit" [disabled]="formLogin.invalid">LOGIN</button>
+        No tienes cuenta? <a href="#" [routerLink]="'/register'">Regístrate</a>
       </form>
     </section>
   `,
@@ -56,20 +57,19 @@ import { Router } from '@angular/router';
     align-items: center;
     justify-content: center;
     gap: 20px;
-    border: 3px solid white;
     color: white;
     height: 60vh;
     width: 80vw;
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.3)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
     );
     border-radius: 10px;
     }
 
 `,
-  imports: [ReactiveFormsModule, FooterComponent],
+  imports: [ReactiveFormsModule, FooterComponent, RouterModule],
 })
 export default class LoginComponent {
   private repoUser = inject(RepoUsersService);

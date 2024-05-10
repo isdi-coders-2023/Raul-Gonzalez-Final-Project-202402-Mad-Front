@@ -14,6 +14,9 @@ export type State = {
   token: string | null;
   currenPayload: Payload | null;
   currenUser: unknown | null;
+  menuControls: {
+    isOpen: boolean;
+  };
 };
 
 const initialState: State = {
@@ -21,6 +24,9 @@ const initialState: State = {
   token: null,
   currenPayload: null,
   currenUser: null,
+  menuControls: {
+    isOpen: false,
+  },
 };
 
 @Injectable({
@@ -65,5 +71,15 @@ export class StateService {
       token: null,
       currenPayload: null,
     });
+  }
+  setMenuControls(isOpen: boolean) {
+    this.state$.next({
+      ...this.state$.value,
+      menuControls: { isOpen },
+    });
+  }
+
+  get menuOptions() {
+    return this.state$.value.menuControls;
   }
 }
