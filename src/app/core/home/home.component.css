@@ -1,3 +1,7 @@
+:host {
+  flex: 0.4 0 auto;
+}
+
 section {
   background-image: url(../../../assets/wallpaperhome.jpg);
   display: flex;

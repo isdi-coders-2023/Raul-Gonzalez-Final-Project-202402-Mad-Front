@@ -18,4 +18,20 @@ export const routes: Routes = [
     path: 'menu',
     loadComponent: () => import('./core/menu/menu.component'),
   },
+  {
+    path: 'create',
+    loadComponent: () => import('./core/createform/createform.component'),
+  },
+  {
+    path: 'details',
+    loadComponent: () => import('./core/details/details.component'),
+  },
+  {
+    path: 'races',
+    loadComponent: () => import('./core/races/races.component'),
+  },
+  {
+    path: 'races/:data',
+    loadComponent: () => import('./core/list/list.component'),
+  },
 ];

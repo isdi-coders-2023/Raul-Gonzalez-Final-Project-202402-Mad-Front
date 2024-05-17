@@ -1,0 +1,9 @@
+div {
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+img {
+  border-radius: 140px;
+}

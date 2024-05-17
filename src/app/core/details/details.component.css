@@ -1,0 +1,6 @@
+:host {
+  display: flex;
+  justify-content: center;
+  flex: 2 0 auto;
+  font-family: "Inter", sans-serif;
+}

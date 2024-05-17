@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { StateService } from '../../service/state.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,13 +10,27 @@ import { RouterModule } from '@angular/router';
     <menu>
       <section>
         <button>MAPA</button>
-        <button>RAZAS</button>
+        <a href="#" [routerLink]="'/races'"> <button>RAZAS</button></a>
         <button>HISTORIA</button>
         <button>FACCIONES</button>
-        <a href="#" [routerLink]="'/login'"><button>LOGIN</button></a>
+        @if (displayLogout) {
+        <button type="button" (click)="logout()">LOGOUT</button>
+        } @else {
+        <button class="login" [routerLink]="'/login'">LOGIN</button>
+        }
       </section>
     </menu>
   `,
   styleUrl: './menu.component.css',
 })
-export default class MenuComponent {}
+export default class MenuComponent {
+  state = inject(StateService);
+  router = inject(Router);
+  displayLogout: boolean =
+    this.state.getCurrentState().loginState === 'logged' ? true : false;
+
+  logout() {
+    this.state.setLogout();
+    this.router.navigate(['/home']);
+  }
+}
