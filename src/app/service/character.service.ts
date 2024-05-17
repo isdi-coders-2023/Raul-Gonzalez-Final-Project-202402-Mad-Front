@@ -17,7 +17,12 @@ export class RepoCharacterService {
     return this.httpClient.post<Character[]>(this.url, data);
   }
   filterCharacter(race: Race) {
-    console.log(race);
     return this.httpClient.get<Character[]>(this.url + '/search/' + race);
+  }
+  getDelete(id: string) {
+    return this.httpClient.delete(this.url + '/' + id);
+  }
+  updateCharacter(id: string, data: FormData) {
+    return this.httpClient.patch<Character>(this.url + '/' + id, data);
   }
 }

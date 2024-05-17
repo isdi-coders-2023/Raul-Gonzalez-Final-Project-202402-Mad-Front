@@ -16,7 +16,7 @@ export type State = {
   token: string | null;
   currenPayload: Payload | null;
   currenUser: unknown | null;
-  character: Character[];
+  characters: Character[];
   menuControls: {
     isOpen: boolean;
   };
@@ -27,7 +27,7 @@ const initialState: State = {
   token: null,
   currenPayload: null,
   currenUser: null,
-  character: [],
+  characters: [],
   menuControls: {
     isOpen: false,
   },
@@ -56,6 +56,9 @@ export class StateService {
 
   setLoginState(loginState: LoginState): void {
     this.state$.next({ ...this.state$.value, loginState });
+  }
+  setCharacters(characters: Character[]): void {
+    this.state$.next({ ...this.state$.value, characters });
   }
   setLogin(token: string) {
     const currenPayload = this.jwtDecode(token) as Payload;
@@ -90,8 +93,8 @@ export class StateService {
     return this.state$.value.menuControls;
   }
   loadCharacter() {
-    this.repoCharacter.getCharacter().subscribe((character) => {
-      this.state$.next({ ...this.state$.value, character });
+    this.repoCharacter.getCharacter().subscribe((characters) => {
+      this.state$.next({ ...this.state$.value, characters });
     });
   }
   filterCharacter(race: Race) {

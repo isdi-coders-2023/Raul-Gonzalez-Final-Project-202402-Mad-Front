@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <div>
       <img
-        [routerLink]="'/details'"
+        [routerLink]="['/details/', character.id]"
         src="{{ this.state.constructImageUrl(character.imgUrl, '100', '100') }}"
         alt="logoCard"
       />
@@ -21,6 +21,5 @@ import { RouterModule } from '@angular/router';
 export class CardComponent {
   @Input() character!: Character;
   state = inject(StateService);
-
   constructor() {}
 }

@@ -26,10 +26,10 @@ export default class ListComponent {
   constructor() {
     this.race = this.route.snapshot.paramMap.get('data');
     this.state.getState().subscribe((data) => {
-      this.characters = data.character;
+      this.characters = data.characters;
       console.log(this.characters);
-      this.getCharatacter();
     });
+    this.getCharatacter();
   }
 
   getCharatacter() {
@@ -37,6 +37,7 @@ export default class ListComponent {
       this.repo.filterCharacter(this.race as Race).subscribe({
         next: (data) => {
           this.characters = data;
+          this.state.setCharacters(data);
         },
       });
     }

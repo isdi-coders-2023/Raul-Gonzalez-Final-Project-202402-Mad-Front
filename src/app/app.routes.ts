@@ -23,7 +23,7 @@ export const routes: Routes = [
     loadComponent: () => import('./core/createform/createform.component'),
   },
   {
-    path: 'details',
+    path: 'details/:id',
     loadComponent: () => import('./core/details/details.component'),
   },
   {

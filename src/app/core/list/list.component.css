@@ -4,3 +4,7 @@
   flex: 2 0 auto;
   font-family: "Inter", sans-serif;
 }
+
+ul {
+  list-style: none;
+}
