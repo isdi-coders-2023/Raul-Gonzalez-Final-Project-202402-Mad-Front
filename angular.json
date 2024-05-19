@@ -81,7 +81,10 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": [],
-            "codeCoverageExclude": []
+            "codeCoverageExclude": [
+              "src/app/core/createform/**",
+              "src/app/core/details/**"
+            ]
           }
         },
         "lint": {

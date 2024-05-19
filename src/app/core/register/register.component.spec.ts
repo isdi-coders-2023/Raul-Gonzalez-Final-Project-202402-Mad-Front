@@ -1,29 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Routes, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
-
 import RegisterComponent from './register.component';
 import { RepoUsersService } from '../../service/users.repo.service';
 import { StateService } from '../../service/state.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let mockRepoUsersService: jasmine.SpyObj<RepoUsersService>;
-  let mockRouter: jasmine.SpyObj<Router>;
   let mockStateService: jasmine.SpyObj<StateService>;
 
   beforeEach(async () => {
     mockRepoUsersService = jasmine.createSpyObj('RepoUsersService', ['create']);
-    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+
     mockStateService = jasmine.createSpyObj('StateService', ['setLoginState']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RegisterComponent],
+      imports: [
+        ReactiveFormsModule,
+        RegisterComponent,
+        HttpClientTestingModule,
+      ],
       providers: [
+        provideRouter([] as Routes),
         { provide: RepoUsersService, useValue: mockRepoUsersService },
-        { provide: Router, useValue: mockRouter },
         { provide: StateService, useValue: mockStateService },
         FormBuilder,
       ],

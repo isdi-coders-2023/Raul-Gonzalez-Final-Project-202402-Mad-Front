@@ -7,4 +7,12 @@
 
 ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+li {
+  display: flex;
+  justify-content: center;
 }

@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { StateService } from '../../service/state.service';
-import { RepoCharacterService } from '../../service/character.service';
+import RepoCharacterService from '../../service/character.service';
 
 @Component({
   selector: 'app-createform',
@@ -42,12 +42,12 @@ import { RepoCharacterService } from '../../service/character.service';
             placeholder="Descripción"
           />
         </div>
-        <div>
+        <div class="form-control">
           <input
             id="faction"
             type="text"
             formControlName="faction"
-            placeholder="faction"
+            placeholder="Facción"
           />
         </div>
         <label for="file">Selecciona tu imagen</label>

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { RepoUsersService } from './users.repo.service';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RepoCharacterService } from './character.service';
+import RepoCharacterService from './character.service';
 import { Character, Race } from '../models/character.data';
 
 export type LoginState = 'idle' | 'logging' | 'logged' | 'error';

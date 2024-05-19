@@ -12,6 +12,9 @@ import { StateService } from './service/state.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  onClick() {
+    throw new Error('Method not implemented.');
+  }
   state = inject(StateService);
   constructor() {
     const token = localStorage.getItem('LOTR');

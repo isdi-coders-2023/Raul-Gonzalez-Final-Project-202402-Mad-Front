@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { Character } from '../../models/character.data';
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -8,12 +11,13 @@ describe('CardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardComponent]
-    })
-    .compileComponents();
-    
+      imports: [CardComponent, HttpClientTestingModule],
+      providers: [provideRouter([])],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
+    component.character = { imgUrl: '' } as Character;
     fixture.detectChanges();
   });
 

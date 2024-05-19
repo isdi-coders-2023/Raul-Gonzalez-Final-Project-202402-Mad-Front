@@ -3,24 +3,34 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StateService } from '../../service/state.service';
 import { Character } from '../../models/character.data';
 import { CardComponent } from '../card/card.component';
-import { RepoCharacterService } from '../../service/character.service';
+import RepoCharacterService from '../../service/character.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   standalone: true,
   template: `
-    <div>
-      @if (character) {
-      <img
-        src="{{ this.state.constructImageUrl(character.imgUrl, '100', '100') }}"
-        alt="logoCard"
-      />
-      <p>Nombre: {{ character.name }}</p>
-      <p>Raza: {{ character.race }}</p>
-      <p>Descripcion {{ character.description }}</p>
-      }
-      <section>
+    @if (character && !showUpdateForm) {
+    <div class="fondo">
+      <div class="top">
+        <div class="left">
+          <p>Nombre: {{ character.name }}</p>
+          <p>Raza: {{ character.race }}</p>
+        </div>
+        <div class="right">
+          <img
+            src="{{
+              this.state.constructImageUrl(character.imgUrl, '100', '100')
+            }}"
+            alt="logoCard"
+          />
+        </div>
+      </div>
+      <div class="bottom">
+        <p>Descripcion:</p>
+        <p>{{ character.description }}</p>
+      </div>
+      <div class="actions">
         <img
           src="../assets/update.png"
           alt="logoUpdate"
@@ -39,24 +49,55 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
           (keyup)="deleteCharacter()"
           tabindex="0"
         />
-      </section>
+      </div>
     </div>
-    @if (showUpdateForm) {
-    <div>
-      <form [formGroup]="updateForm" (ngSubmit)="updateCharacter()">
-        <label for="name">Name:</label>
-        <input id="name" formControlName="name" />
-        <label for="race">Race:</label>
-        <input id="race" formControlName="race" />
-        <label for="description">Description:</label>
-        <textarea id="description" formControlName="description"></textarea>
-        <label for="faction"></label>
-        <input type="text" formControlName="faction" />
 
-        <input type="file" id="imgUrl" #imgUrl (change)="onChangeImg()" />
-        <button type="submit">Update Character</button>
+    }
+    <!-- <section>
+
+      </section> -->
+
+    @if (showUpdateForm) {
+    <section>
+      <form [formGroup]="updateForm" (ngSubmit)="updateCharacter()">
+        <h2>Editar</h2>
+        <div class="form-control">
+          <select name="create" formControlName="race" id="race">
+            <option value="" disabled>Elige la raza</option>
+            @for (item of raceOptions; track $index) {
+            <option value="{{ item }}">{{ item }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-control">
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Nombre del personaje"
+          />
+        </div>
+        <div class="form-control">
+          <input
+            id="description"
+            type="text"
+            formControlName="description"
+            placeholder="Descripción"
+          />
+        </div>
+        <div class="form-control">
+          <input
+            id="faction"
+            type="text"
+            formControlName="faction"
+            placeholder="Facción"
+          />
+        </div>
+        <label for="file">Selecciona tu imagen</label>
+        <input type="file" class="file" #imgUrl (change)="onChangeImg()" />
+        <button type="submit">EDITAR</button>
       </form>
-    </div>
+    </section>
     }
   `,
   styleUrl: './details.component.css',
@@ -68,6 +109,7 @@ export default class DetailsComponent {
   state = inject(StateService);
   router = inject(Router);
   fb = inject(FormBuilder);
+  raceOptions = ['men', 'elve', 'dwarf', 'urukhai', 'orc', 'hobbit'];
   @ViewChild('imgUrl') imgUrl!: ElementRef;
 
   character!: Character | undefined;
@@ -101,7 +143,7 @@ export default class DetailsComponent {
           (char) => char.id !== this.character!.id
         )
       );
-      this.router.navigate(['/characters']);
+      this.router.navigate(['/races']);
     });
   }
   toggleUpdateForm() {

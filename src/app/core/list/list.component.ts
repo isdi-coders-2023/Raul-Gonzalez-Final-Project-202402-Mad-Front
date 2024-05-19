@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { StateService } from '../../service/state.service';
 import { Character, Race } from '../../models/character.data';
-import { RepoCharacterService } from '../../service/character.service';
+import RepoCharacterService from '../../service/character.service';
 import { CardComponent } from '../card/card.component';
 import { ActivatedRoute } from '@angular/router';
 

@@ -7,14 +7,19 @@ import { StateService } from '../../service/state.service';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <div>
+    <div class="races">
       @for (race of races; track $index) {
-      <button type="submit" [routerLink]="['/races', race.path]">
-        {{ race.title }}
-      </button>
+      <div class="{{ race.title }}">
+        <button type="submit" [routerLink]="['/races', race.path]">
+          {{ race.title }}
+        </button>
+      </div>
       }
-
-      <button type="submit" [routerLink]="'/create'">Crea tu personaje</button>
+      <div class="create">
+        <button type="submit" [routerLink]="'/create'">
+          Crea tu personaje
+        </button>
+      </div>
     </div>
   `,
   styleUrl: './races.component.css',

@@ -6,7 +6,7 @@ import { Character, Race } from '../models/character.data';
 @Injectable({
   providedIn: 'root',
 })
-export class RepoCharacterService {
+export default class RepoCharacterService {
   httpClient = inject(HttpClient);
   url = environment.apiUrl + '/character';
 
