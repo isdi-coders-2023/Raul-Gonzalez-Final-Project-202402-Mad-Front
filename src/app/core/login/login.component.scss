@@ -41,9 +41,7 @@ input {
   padding: 5px;
   border-radius: 5px;
 }
-input:visible {
-  border: none !important;
-}
+
 ::placeholder {
   color: rgb(213, 207, 207);
   font-size: 12px;

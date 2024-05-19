@@ -77,9 +77,7 @@ select {
 select {
   padding: 4px;
 }
-input:visible {
-  border: none !important;
-}
+
 ::placeholder,
 select {
   color: rgb(213, 207, 207);
