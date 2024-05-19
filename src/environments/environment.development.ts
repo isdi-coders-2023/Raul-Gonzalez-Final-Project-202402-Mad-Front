@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'https://raul-gonzalez-final-project-202402-mad.onrender.com',
 };
