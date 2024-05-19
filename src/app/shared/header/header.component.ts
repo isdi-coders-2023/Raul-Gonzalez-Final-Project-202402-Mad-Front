@@ -8,14 +8,19 @@ import { RouterModule } from '@angular/router';
   imports: [BurgerComponent, RouterModule],
   template: `
     <header>
-      <a href="#" [routerLink]="'/home'"
+      <!-- <a href="#" [routerLink]="'/home'"
         ><img
           src="../assets/anillo.gif"
           width="55px"
           height="55px"
           alt="ring"
         />
-      </a>
+      </a> -->
+      <div>
+        <a href="" routerLink="/home"
+          ><img src="../assets/iconoanillo.png" alt=""
+        /></a>
+      </div>
 
       <app-burger></app-burger>
     </header>

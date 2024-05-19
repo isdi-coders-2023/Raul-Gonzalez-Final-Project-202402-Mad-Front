@@ -9,66 +9,37 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
+
   template: `
     <section>
       <form [formGroup]="formLogin" (ngSubmit)="submit()">
-        <h2>Iniciar sesión</h2>
+        <img src="../assets/imagenlogin.png" alt="logo login" />
+        <h2>Login</h2>
         <div class="email">
-          <label
-            >Email
-            <input
-              id="user"
-              type="text"
-              formControlName="user"
-              placeholder="Insert your email"
-          /></label>
+          <input
+            id="user"
+            type="text"
+            formControlName="user"
+            placeholder="Email"
+          />
         </div>
         <div>
-          <label
-            >Password
-            <input
-              id="password"
-              type="password"
-              formControlName="password"
-              placeholder="Insert you password"
-          /></label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
         </div>
         <button type="submit" [disabled]="formLogin.invalid">LOGIN</button>
-        No tienes cuenta? <a href="#" [routerLink]="'/register'">Regístrate</a>
+        <div class="register">
+          <p>¿No tienes cuenta?</p>
+          <a href="#" [routerLink]="'/register'">Regístrate</a>
+        </div>
       </form>
     </section>
   `,
-  styles: `
-  :host {
-    display: flex;
-    justify-content: center;
-    flex: 2 0 auto;
-  }
-
-  section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    color: white;
-    height: 60vh;
-    width: 80vw;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    border-radius: 10px;
-    }
-
-`,
+  styleUrl: './login.component.scss',
   imports: [ReactiveFormsModule, FooterComponent, RouterModule],
 })
 export default class LoginComponent {
@@ -90,6 +61,7 @@ export default class LoginComponent {
 
     this.repoUser.login(userLogin).subscribe({
       next: ({ token }) => {
+        console.log(token)
         this.state.setLogin(token);
         console.log('Logged in', token);
         this.router.navigate(['/home']);

@@ -1,21 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import MenuComponent from './menu.component';
-import { provideRouter } from '@angular/router';
+import { CardComponent } from './card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { Character } from '../../models/character.data';
 
-describe('MenuComponent', () => {
-  let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+describe('CardComponent', () => {
+  let component: CardComponent;
+  let fixture: ComponentFixture<CardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuComponent, HttpClientTestingModule],
+      imports: [CardComponent, HttpClientTestingModule],
       providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuComponent);
+    fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
+    component.character = { imgUrl: '' } as Character;
     fixture.detectChanges();
   });
 

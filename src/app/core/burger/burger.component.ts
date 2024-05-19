@@ -8,9 +8,9 @@ import { Location } from '@angular/common';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <a (click)="onClick()" href="">
+    <button (click)="onClick()">
       <img src="../assets/iconburger.png" alt="iconburger" width="70px" />
-    </a>
+    </button>
   `,
   styleUrl: './burger.component.css',
 })

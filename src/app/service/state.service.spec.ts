@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StateService, State, LoginState } from './state.service';
 import { RepoUsersService } from './users.repo.service';
 import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('StateService', () => {
   let service: StateService;
   let mockRepoUsersService: jasmine.SpyObj<RepoUsersService>;
@@ -9,6 +10,7 @@ describe('StateService', () => {
   beforeEach(() => {
     const repoSpy = jasmine.createSpyObj('RepoUsersService', ['getById']);
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [
         StateService,
         { provide: RepoUsersService, useValue: repoSpy },
@@ -33,6 +35,11 @@ describe('StateService', () => {
       });
     });
   });
+  it('should get state', () => {
+    service.getState().subscribe((state) => {
+      expect(state).toEqual(service.state);
+    });
+  });
 
   describe('setLogin', () => {
     it('should set login state to logged and set token, payload, and current user', () => {
@@ -49,12 +56,14 @@ describe('StateService', () => {
         expect(state.token).toEqual('token');
         expect(state.currenPayload).toEqual(payload);
         expect(state.currenUser).toEqual(mockUser);
-        expect(localStorage.setItem).toHaveBeenCalledWith(
-          'LOTR',
-          JSON.stringify({ token: 'token' })
-        );
+        expect(localStorage.setItem).toHaveBeenCalledWith('LOTR', 'token');
       });
     });
+  });
+
+  it('should set articles', () => {
+    service.loadCharacter();
+    expect(service.state.characters).toEqual([]);
   });
 
   describe('setLogout', () => {

@@ -22,4 +22,7 @@ export class RepoUsersService {
     const url = this.url + '/register';
     return this.httpClient.post(url, data);
   }
+  getDelete(id: string) {
+    return this.httpClient.delete(this.url + '/' + id);
+  }
 }

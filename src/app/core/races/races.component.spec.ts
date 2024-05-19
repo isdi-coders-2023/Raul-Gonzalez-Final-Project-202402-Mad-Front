@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import MenuComponent from './menu.component';
-import { provideRouter } from '@angular/router';
+import RacesComponent from './races.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
-describe('MenuComponent', () => {
-  let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+describe('RacesComponent', () => {
+  let component: RacesComponent;
+  let fixture: ComponentFixture<RacesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuComponent, HttpClientTestingModule],
+      imports: [RacesComponent, HttpClientTestingModule],
       providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuComponent);
+    fixture = TestBed.createComponent(RacesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
